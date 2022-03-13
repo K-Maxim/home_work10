@@ -1,41 +1,9 @@
-import json
-
 from flask import Flask
 
+import utils
 
-def uploading_candidates():
-    """
-    Функция импортирует список из 'candidates.json' и записывает его в переменную
-    :return: список словарей
-    """
-    with open('candidates.json', 'r', encoding='UTF-8') as file:
-        candidates_list = json.load(file)
-        return candidates_list
-
-
-candidates_list = uploading_candidates()
-
-
-def canditates_on_page():
-    """
-    Функция, которая выводит данные кандидатов
-    :return: строковые данные всех кандидатов
-    """
-    person_str = ''
-
-    for candidate in candidates_list:
-        person = f'id: {candidate["id"]}\n' \
-                 f'name: {candidate["name"]}\n' \
-                 f'picture: {candidate["picture"]}\n' \
-                 f'position: {candidate["position"]}\n' \
-                 f'gender: {candidate["gender"]}\n' \
-                 f'age: {candidate["age"]}\n' \
-                 f'skills: {candidate["skills"]}\n\n'
-        person_str += person
-    return person_str
-
-
-person_str = canditates_on_page()  # строковые данные записываю в переменную
+candidates_list = utils.uploading_candidates()  # список кандидатов импортированный из JSON
+person_str = utils.canditates_str()  # строковые данные записываю в переменную
 
 app = Flask(__name__)  # запускаю фласк
 
