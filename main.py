@@ -80,7 +80,8 @@ def skills(skills):
     """
     person_profile = ''
     for i in range(len(candidates_list)):
-        if skills in candidates_list[i]["skills"]:
+        candidate_skills = candidates_list[i]["skills"].lower().split(', ')
+        if skills in candidate_skills:
             person = f'Имя кандидата: {candidates_list[i]["name"]}\n' \
                      f'Позиция кандидата: {candidates_list[i]["position"]}\n' \
                      f'Навыки кандидата: {candidates_list[i]["skills"]}\n\n'
